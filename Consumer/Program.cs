@@ -43,7 +43,7 @@ namespace Consumer
         {
             public Task Consume(ConsumeContext<CustomerRegistered> context)
             {
-                Console.WriteLine($"Received [x] {context.Message.Name} [at] {DateTime.Now:u}");
+                Console.WriteLine($"Received [x] {context.Message.Id} -- {context.Message.Name} [at] {context.Message.RegisterUtc}");
                 return Task.CompletedTask;
             }
         }

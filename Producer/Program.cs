@@ -18,6 +18,13 @@ namespace Producer
                     h.Username("guest");
                     h.Password("guest");
                 });
+
+                sbc.Publish<CustomerRegistered>(x =>
+                {
+                    x.Durable = true; // default: true
+                    x.AutoDelete = false; // default: false
+                    x.ExchangeType = "fanout"; // default, allows any valid exchange type
+                });
             });
 
             var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
